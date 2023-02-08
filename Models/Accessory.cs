@@ -14,6 +14,7 @@ namespace ToDoList.Models
         public string? AppUserId { get; set; }
 
         // Navigation Properties
+        public virtual AppUser? AppUser { get; set; }
         public virtual ICollection<ToDoItem> ToDoItems { get; set; } = new HashSet<ToDoItem>();
     }
 }
