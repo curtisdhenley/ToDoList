@@ -54,6 +54,41 @@ namespace ToDoList.Controllers
                                          .ToDoItems.ToList();
             }
 
+            toDoItem = await _context.ToDoItem.Where(t => t.AppUserId == userId && t.Completed == false).ToListAsync();
+
+            ViewData["AccessoryId"] = new SelectList(accessories, "Id", "Name", accessoryId);
+
+            return View(toDoItem);
+        }
+
+        // GET: completedItems
+        public async Task<IActionResult> CompletedItems(int? accessoryId)
+        {
+            string userId = _userManager.GetUserId(User)!;
+
+            // Get the ToDoItems from the appuser
+            List<ToDoItem> toDoItem = new List<ToDoItem>();
+
+            // Get the Accessory from the appuser based on whether they have chosen an accessory to "filter" by
+            List<Accessory> accessories = await _context.Accessory.Where(a => a.AppUserId == userId).ToListAsync();
+
+            if (accessoryId == null)
+            {
+                toDoItem = await _context.ToDoItem
+                                         .Where(t => t.AppUserId == userId)
+                                         .Include(t => t.Accessories)
+                                         .ToListAsync();
+            }
+            else
+            {
+                toDoItem = (await _context.Accessory
+                                         .Include(t => t.ToDoItems)
+                                         .FirstOrDefaultAsync(t => t.Id == accessoryId && t.AppUserId == userId))!
+                                         .ToDoItems.ToList();
+            }
+
+            toDoItem = await _context.ToDoItem.Where(t => t.AppUserId == userId && t.Completed == true).ToListAsync();
+
             ViewData["AccessoryId"] = new SelectList(accessories, "Id", "Name", accessoryId);
 
             return View(toDoItem);
