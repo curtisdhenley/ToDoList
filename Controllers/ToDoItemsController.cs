@@ -61,6 +61,11 @@ namespace ToDoList.Controllers
             return View(toDoItem);
         }
 
+        public async Task<IActionResult> ThemeIndex()
+        {
+            return View();
+        }
+
         // GET: completedItems
         public async Task<IActionResult> CompletedItems(int? accessoryId)
         {
@@ -198,21 +203,26 @@ namespace ToDoList.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,AppUserId,Created,DueDate,Completed")] ToDoItem toDoItem, IEnumerable<int> selected)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Created,DueDate,Completed")] ToDoItem toDoItem, IEnumerable<int> selected)
         {
             if (id != toDoItem.Id)
             {
                 return NotFound();
             }
 
+            ModelState.Remove("AppUserId");
+
             if (ModelState.IsValid)
             {
                 try
                 {
+                    // Assign AppUserId to instance
+                    toDoItem.AppUserId = _userManager.GetUserId(User);
+
                     // Reformat Created Date
                     toDoItem.Created = DateTime.SpecifyKind(toDoItem.Created, DateTimeKind.Utc);
 
-                    // Reformat Birth Date
+                    // Reformat Due Date
                     if (toDoItem.DueDate != null)
                     {
                         toDoItem.DueDate = DateTime.SpecifyKind(toDoItem.DueDate.Value, DateTimeKind.Utc);
