@@ -28,48 +28,49 @@
     <link href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" rel="stylesheet">
     <!-- icons -->
     <link href="~/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- Head js -->
-    <script src="~/js/head.js"></script>
     <!--Bootstrap icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ToDoList.styles.css" asp-append-version="true" />
+    <!-- Head js -->
+    <script src="~/js/head.js"></script>
 </head>
 <!-- body start -->
 <body data-theme="light" data-layout-mode="horizontal" data-topbar-color="dark" data-menu-position="fixed">
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ToDoList</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        @* hide navbar links *@
-                        @if (User.Identity!.IsAuthenticated)
-                        {
-                            <li class="nav-item dropdown-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoItems" asp-action="Index">To Do List</a>
+    <!-- Begin page -->
+    <div id="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ToDoList</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-                            <li class="nav-item dropdown-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="Index">Accessories</a>
-                            </li>
-                            <li class="nav-item dropdown-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoItems" asp-action="ThemeIndex">Theme Sample</a>
-                            </li>
-                        }
-                    </ul>
-                    <partial name="_LoginPartial" />
+                            @* hide navbar links *@
+                            @if (User.Identity!.IsAuthenticated)
+                            {
+                                <li class="nav-item dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ToDoItems" asp-action="Index">To Do List</a>
+                                </li>
+                                <li class="nav-item dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Accessories" asp-action="Index">Accessories</a>
+                                </li>
+                                <li class="nav-item dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ToDoItems" asp-action="ThemeIndex">Theme Sample</a>
+                                </li>
+                            }
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
-            </div>
-        </nav>
-        <!-- Begin page -->
-        <div id="wrapper">
+            </nav>
+
             <!-- Topbar Start -->
             <div class="navbar-custom">
                 <div class="container-fluid">
@@ -590,7 +591,6 @@
                                     <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button"
                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fe-airplay me-1"></i> ToDoList <div class="arrow-down">
-
                                         </div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
@@ -960,30 +960,30 @@
                     </nav>
                 </div> <!-- end container-fluid -->
             </div> <!-- end topnav-->
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
 
-    <!-- Footer Start -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <script>document.write(new Date().getFullYear())</script> &copy; UBold theme by <a href="">Coderthemes</a>
-                </div>
-                <div class="col-md-6">
-                    <div class="text-md-end footer-links d-none d-sm-block">
-                        <a href="javascript:void(0);">About Us</a>
-                        <a href="javascript:void(0);">Help</a>
-                        <a href="javascript:void(0);">Contact Us</a>
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <script>document.write(new Date().getFullYear())</script> &copy; ToDoList by <a href="https://ch-cf-portfolio.netlify.app/">Curtis Henley</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-end footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     <!-- end Footer -->
     </div>
     <!-- END wrapper -->

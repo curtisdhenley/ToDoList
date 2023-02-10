@@ -58,3 +58,64 @@
 }
     </tbody>
 </table>
+
+<div class="row g-2">
+    <div class="col-12 col-md-4 sideNav">
+        <form asp-action="SearchContacts" asp-controller="ToDoItems" method="post">
+            <div class="input-group">
+                <input class="form-control" type="search" name="searchString"
+                       placeholder="Search Term" />
+                <input type="submit" class="btn btn-outline-primary" value="Search" />
+            </div>
+        </form>
+        <form asp-action="Index" asp-controller="Contacts" method="post">
+            <div class="mt-5">
+                <label class="form-label fw-bold">CATEGORY FILTER</label>
+                <select name="accessoryId" asp-items="@ViewBag.AccessoryList" class="form-control"
+                        onchange="this.form.submit()" onfocus="this.selectedIndex=-1;this.blur();">
+                    <option>All Contacts</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 col-md-8">
+        <div class="row row-cols-1 g-3">
+            @foreach (var toDoItem in Model)
+            {
+                <div class="col">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelItem => toDoItem.AppUser!.FullName)</h5>
+                                    <div class="card-text">
+                                        @Html.DisplayFor(modelItem => toDoItem.Name)<br>
+                                        @Html.DisplayFor(modelItem => toDoItem.DueDate)<br>
+                                        @Html.DisplayFor(modelItem => toDoItem.Completed)
+                                    </div>
+                                    <div class="card-text">
+                                        @*<span class="fw-bold me-2">Phone:</span>@Html.DisplayFor(modelItem => toDoItem.PhoneNumber)*@
+                                    </div>
+                                    <div class="card-text">
+                                        @*<span class="fw-bold me-2">Email:</span>@Html.DisplayFor(modelItem => toDoItem.Email)*@
+                                    </div>
+                                    <div class="fs-4">
+                                        <a class="me-3 editIcons" asp-action="Edit" asp-route-id="@toDoItem.Id"><i class="bi bi-pencil-fill "></i></a>
+                                        <a class="me-3 editIcons" asp-action="EmailContact" asp-route-id="@toDoItem.Id"><i class="bi bi-envelope-fill "></i></a>
+                                        <a class="me-3 editIcons" asp-action="Delete" asp-route-id="@toDoItem.Id"><i class="bi bi-trash-fill text-danger "></i></a>
+                                    </div>
+                                    <div>
+                                        @foreach (Accessory accessory in toDoItem.Accessories)
+                                        {
+                                            <span class="badge rounded-pill border border-1 text-dark fw-normal">@accessory.Name</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
