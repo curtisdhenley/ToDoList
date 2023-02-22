@@ -71,7 +71,7 @@
                 </div>
             </nav>
 
-           <!-- <!-- Topbar Start -->
+            @*<!-- <!-- Topbar Start -->
             <div class="navbar-custom">
                 <div class="container-fluid">
                     <ul class="list-unstyled topnav-menu float-end mb-0">
@@ -344,7 +344,8 @@
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <img src="~/img/users/user-1.jpg" alt="user-image" class="rounded-circle">
                                 <span class="pro-user-name ms-1">
-                                    Geneva <i class="mdi mdi-chevron-down"></i>
+                                    <partial name="_LoginPartial" />
+                                    <i class="mdi mdi-chevron-down"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -599,7 +600,7 @@
                                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                             </li>
                                             @* hide navbar links *@
-                                            @if (User.Identity!.IsAuthenticated)
+                                           @*@ @if (User.Identity!.IsAuthenticated)
                                             {
                                                 <li class="nav-item dropdown-item">
                                                     <a class="nav-link text-dark" asp-area="" asp-controller="ToDoItems" asp-action="Index">Tasks</a>
@@ -959,8 +960,10 @@
                         </div> <!-- end .collapsed-->
                     </nav>
                 </div> <!-- end container-fluid -->
-            </div> <!-- end topnav--> 
+            </div> <!-- end topnav-->*@
+
         </header>
+
         <div class="container">
             <main role="main" class="pb-3">
                 @RenderBody()
@@ -984,7 +987,7 @@
                 </div>
             </div>
         </footer>
-    <!-- end Footer -->
+        <!-- end Footer -->
     </div>
     <!-- END wrapper -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
